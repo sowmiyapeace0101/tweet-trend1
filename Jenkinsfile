@@ -13,8 +13,9 @@ environment {
                 sh 'mvn clean deploy'
             }
         }
+
        stage('SonarQube analysis') {
-        environment
+        environment {
            scannerHome = tool 'greens-sonar-scanner'
     }
     steps{
