@@ -11,7 +11,7 @@ environment {
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "-----build completed---"
             }
-
+        }
         }
     stage('test'){
             steps{
@@ -31,4 +31,4 @@ environment {
   }
 }
        }
-}
+
