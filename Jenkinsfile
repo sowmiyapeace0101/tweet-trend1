@@ -12,8 +12,8 @@ environment {
                 echo "-----build completed---"
             }
         }
-        }
-    stage('test'){
+    
+        stage('test') {
             steps{
                 echo "-----unit test started---"
                 sh 'mvn surefire-report:report'
@@ -31,4 +31,4 @@ environment {
   }
 }
        }
-
+}
