@@ -25,9 +25,6 @@ pipeline {
         stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
-                tools {
-                jdk 'jdk-21' // Name of the JDK tool
-            }
             }
             steps {
                 withSonarQubeEnv('Sonarqube-server') {
