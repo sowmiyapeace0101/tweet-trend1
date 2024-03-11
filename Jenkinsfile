@@ -6,32 +6,31 @@ pipeline {
     }
 
     stages {
-        stage("Build") {
+        stage("build") {
             steps {
-                echo "------- build started --------"
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
-                echo "---------build completed ----------"
+                echo "--build started--"
+                sh 'mvn clean deploy -Dmaven.test.skip-true'
+                echo "-----build completed---"
             }
         }
-
-        stage("Test") {
+        
+        stage("test") {
             steps {
-                echo "--------unit test started ---------"
+                echo "-----unit test started---"
                 sh 'mvn surefire-report:report'
-                echo "---------unit test completed -------"
+                echo "-----unit test completed---"
             }
         }
-
+        
         stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'sonar-scanner' // Sonar scanner name should match the one defined in the tools
+                scannerHome = tool 'SonarQubeScanner'
             }
             steps {
-               
-                    withSonarQubeEnv('sonnar-cloud') {
-                        sh "${scannerHome}/bin/sonar-scanner" // Communicate with SonarQube server and send analysis report
-                    }
+                withSonarQubeEnv('Sonarqube-server') {
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
-           }
+            }
+        }
     }
 }
